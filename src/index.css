@@ -1,9 +1,11 @@
 @font-face {
     font-family: "Amateur Naked";
+    font-style: normal;
+    font-weight: 400;
     src: local("Amateur Naked"),
-    url("/src/assets/fonts/Amateur.ttf") format("truetype"),
-    url("/src/assets/fonts/Amateur.woff") format("woff"),
-    url("/src/assets/fonts/Amateur.woff2") format("woff2");
+    url("../src/assets/fonts/Amateur.ttf") format("truetype"),
+    url("../src/assets/fonts/Amateur.woff") format("woff"),
+    url("../src/assets/fonts/Amateur.woff2") format("woff2");
 }
 
 body {
