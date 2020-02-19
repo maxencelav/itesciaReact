@@ -34,7 +34,7 @@ export default class App extends React.Component {
                                 <Link to="/scores">Score</Link>
                             </li>
                             <li>
-                                <Link to="/about">À propos</Link>
+                                <Link to="/about">A propos</Link>
                             </li>
 
                         </ul>
