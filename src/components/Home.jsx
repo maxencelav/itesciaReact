@@ -1,13 +1,12 @@
 import React from 'react';
+import logo from '../assets/img/logoBlack.png';
 
-class Home extends React.Component {
+export default class Home extends React.Component {
     render() {
-        return(
+        return (
             <div>
-                <h2>Pierre Feuille Ciseaux</h2>
+                <img src={logo} className="logo" alt="Logo"/>
                 <h3>Le jeu culte maintenant disponible en ligne !</h3>
             </div>);
     }
 }
-
-export default Home;

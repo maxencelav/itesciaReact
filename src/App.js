@@ -13,6 +13,7 @@ import Duo from './components/Duo'
 import Scores from './components/Scores'
 import About from './components/About'
 
+
 export default class App extends React.Component {
     render() {
         return (
@@ -40,9 +41,7 @@ export default class App extends React.Component {
                     </nav>
 
                     <Switch>
-                        <Route path="/">
-                            <Home/>
-                        </Route>
+
                         <Route path="/solo">
                             <Solo/>
                         </Route>
@@ -54,6 +53,9 @@ export default class App extends React.Component {
                         </Route>
                         <Route path="/about">
                             <About/>
+                        </Route>
+                        <Route path="/">
+                            <Home/>
                         </Route>
                     </Switch>
 
