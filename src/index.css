@@ -52,16 +52,17 @@ h2 {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    height: 30em;
 
 }
 
 #P1case {
-    background-color: indianred;
+    background-color: rgba(205, 92, 92, 0.51);
     width: 50%;
 }
 
 #P2case {
-    background-color: lightskyblue;
+    background-color: rgba(135, 206, 250, 0.51);
     width: 50%;
 
 }

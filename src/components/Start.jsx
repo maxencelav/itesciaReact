@@ -1,11 +1,16 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {setNames} from "../redux/actions";
 
-export default class Start extends React.Component {
+class Start extends React.Component {
     constructor(props) {
         super(props);
-        this.myRef = React.createRef();
+        this.state = {
+            names: []
+        }
     }
+
 
 
     enablePlayerTwoName() {
@@ -31,13 +36,17 @@ export default class Start extends React.Component {
         let player1Name = event.target[2].value;
         let player2Name = event.target[3].value;
 
+        console.log("SUMBIT PLAY", player1Name,player2Name)
+
+        this.props.setNames(player1Name,player2Name);
+
         if (isModeOnePlayer && !isModeTwoPlayers) {
             return (
-                <Redirect to="/solo"/>
+                this.props.history.push("/solo")
             );
         } else if (!isModeOnePlayer && isModeTwoPlayers) {
             return (
-                <Redirect to="/duo"/>
+                this.props.history.push("/duo")
             );
         }
 
@@ -76,3 +85,21 @@ export default class Start extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        P1name: state.P1name,
+        P2name: state.P2name
+
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        setNames: names => {
+            dispatch(setNames(names))
+        }
+    }
+}
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Start));

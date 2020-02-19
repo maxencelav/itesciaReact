@@ -1,21 +1,14 @@
-export const SET_NAME_P1 = 'SET_NAME_P1';
-export const SET_NAME_P2 = 'SET_NAME_P2';
+export const SET_NAMES = 'SET_NAMES';
 export const ADD_GAME = 'ADD_GAME';
 
 
-export function setNameP1(text) {
+export function setNames(P1name, P2name) {
     return {
-        type: SET_NAME_P1,
-        name: text
+        type: SET_NAMES,
+        names: [P1name, P2name]
     }
 }
 
-export function setNameP2(text) {
-    return {
-        type: SET_NAME_P2,
-        name: text
-    }
-}
 
 export function addGame(game) {
     return {
