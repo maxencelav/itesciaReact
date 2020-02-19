@@ -1,26 +1,64 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
+import Home from './components/Home'
+import Solo from './components/Solo'
+import Duo from './components/Duo'
+import Scores from './components/Scores'
+import About from './components/About'
+
+export default class App extends React.Component {
+    render() {
+        return (
+            <Router>
+                <div>
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to="/">Accueil</Link>
+                            </li>
+                            <li>
+                                <Link to="/solo">Solo</Link>
+                            </li>
+                            <li>
+                                <Link to="/duo">Duo</Link>
+                            </li>
+                            <li>
+                                <Link to="/scores">Score</Link>
+                            </li>
+                            <li>
+                                <Link to="/about">À propos</Link>
+                            </li>
+
+                        </ul>
+                    </nav>
+
+                    <Switch>
+                        <Route path="/">
+                            <Home/>
+                        </Route>
+                        <Route path="/solo">
+                            <Solo/>
+                        </Route>
+                        <Route path="/duo">
+                            <Duo/>
+                        </Route>
+                        <Route path="/scores">
+                            <Scores/>
+                        </Route>
+                        <Route path="/about">
+                            <About/>
+                        </Route>
+                    </Switch>
+
+                </div>
+            </Router>
+        );
+    }
 }
-
-export default App;
