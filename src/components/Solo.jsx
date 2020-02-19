@@ -7,7 +7,7 @@ class Solo extends React.Component {
     constructor() {
         super();
         this.P1score = 0;
-        this.P2score = 0;
+        this.BOTscore = 0;
         this.names = {}
     }
 
@@ -17,9 +17,10 @@ class Solo extends React.Component {
                 <h2>Solo</h2>
                 <h3>ROUND</h3>
                 <div id="playerGrid">
-                    <div id="P1case">{this.props.name[0]}</div>
-                    <div id="P2case">{this.props.name[1]}</div>
+                    <div id="P1case"></div>
+                    <div id="BOTcase">BOT</div>
                 </div>
+
 
             </div>);
     }
@@ -27,7 +28,7 @@ class Solo extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        name: state.name
+        names: state.names
     };
 }
 
