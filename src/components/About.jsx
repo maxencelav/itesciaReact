@@ -4,7 +4,7 @@ export default class About extends React.Component {
     render() {
         return(
             <div>
-                <h2>À propos</h2>
+                <h2>A propos</h2>
                 <h3>L'équipe est constituée de :</h3>
                 <ul>
                     <li>Maxence Lavenu</li>

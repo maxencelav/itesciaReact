@@ -8,9 +8,8 @@ import {
 } from "react-router-dom";
 
 import Home from './components/Home'
-import Solo from './components/Solo'
-import Duo from './components/Duo'
-import Scores from './components/Scores'
+import Start from './components/Start'
+import Games from './components/Games'
 import About from './components/About'
 
 
@@ -25,13 +24,10 @@ export default class App extends React.Component {
                                 <Link to="/">Accueil</Link>
                             </li>
                             <li>
-                                <Link to="/solo">Solo</Link>
+                                <Link to="/play">Jouer</Link>
                             </li>
                             <li>
-                                <Link to="/duo">Duo</Link>
-                            </li>
-                            <li>
-                                <Link to="/scores">Score</Link>
+                                <Link to="/games">Parties</Link>
                             </li>
                             <li>
                                 <Link to="/about">A propos</Link>
@@ -42,14 +38,11 @@ export default class App extends React.Component {
 
                     <Switch>
 
-                        <Route path="/solo">
-                            <Solo/>
+                        <Route path="/play">
+                            <Start/>
                         </Route>
-                        <Route path="/duo">
-                            <Duo/>
-                        </Route>
-                        <Route path="/scores">
-                            <Scores/>
+                        <Route path="/games">
+                            <Games/>
                         </Route>
                         <Route path="/about">
                             <About/>
