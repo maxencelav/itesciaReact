@@ -23,64 +23,59 @@ class Solo extends React.Component {
      */
     move(move, player) {
 
+        // gets the move for the player
         let playerMove = move;
+
+        // generates a move for the CPU
         let cpuMove = ["R", "P", "S"][Math.floor(Math.random() * 3)];
 
         let currentPlayerScore = this.props.P1score;
         let currentCPUScore = this.props.CPUscore;
+        //grabs the score for both players
 
-        console.log(currentPlayerScore, currentCPUScore)
-
-        console.log(playerMove + " vs " + cpuMove);
-
-        if (playerMove === 'R') {
-            if (cpuMove === 'R') {
-                console.log("equal")
+        if (playerMove === 'R') { // if P1 plays ROCK
+            if (cpuMove === 'R') { // if CPU plays ROCK
                 this._winnerName.textContent = ("Égalité...");
-            } else if (cpuMove === 'P') {
-                console.log("CPU Wins");
+
+            } else if (cpuMove === 'P') { // if CPU plays PAPER
                 this._winnerName.textContent = ("BOT gagne !");
                 currentCPUScore++;
-            } else if (cpuMove === 'S') {
-                console.log("Player Wins")
+
+            } else if (cpuMove === 'S') { // if CPU plays SCISSORS
                 this._winnerName.textContent = (this.props.P1name + " gagne !");
                 currentPlayerScore++;
             }
-        } else if (playerMove === 'P') {
-            if (cpuMove === 'R') {
-                console.log("Player Wins")
+
+        } else if (playerMove === 'P') { // if P1 plays PAPER
+            if (cpuMove === 'R') { // if CPU plays ROCK
                 this._winnerName.textContent = (this.props.P1name + " gagne !");
                 currentPlayerScore++;
-            } else if (cpuMove === 'P') {
-                console.log("equal")
+            } else if (cpuMove === 'P') { // if CPU plays PAPER
                 this._winnerName.textContent = ("Égalité...");
 
-            } else if (cpuMove === 'S') {
-                console.log("CPU Wins")
+            } else if (cpuMove === 'S') { // if CPU plays SCISSORS
                 this._winnerName.textContent = ("BOT gagne !");
                 currentCPUScore++;
             }
-        } else if (playerMove === 'S') {
-            if (cpuMove === 'R') {
-                console.log("CPU Wins")
+        } else if (playerMove === 'S') { // if P1 plays SCISSORS
+            if (cpuMove === 'R') { // if CPU plays ROCK
                 this._winnerName.textContent = ("BOT gagne !");
                 currentCPUScore++;
-            } else if (cpuMove === 'P') {
-                console.log("Player Wins")
+
+            } else if (cpuMove === 'P') { // if CPU plays PAPER
                 this._winnerName.textContent = (this.props.P1name + " gagne !");
                 currentPlayerScore++;
-            } else if (cpuMove === 'S') {
-                console.log("equal")
-                this._winnerName.textContent = ("Égalité...");
 
+            } else if (cpuMove === 'S') { // if CPU plays SCISSORS
+                this._winnerName.textContent = ("Égalité...");
             }
         }
 
         this.props.setCPUScore(currentCPUScore);
         this.props.setP1Score(currentPlayerScore);
+        // sets the score after the move has been calculated
 
-        this._winPopUp.hidden = false;
-        switch (playerMove) {
+        switch (playerMove) { // change playerMove to be printable on the page
             case "R":
                 playerMove = "Pierre"
                 break;
@@ -93,7 +88,7 @@ class Solo extends React.Component {
             default:
                 break;
         }
-        switch (cpuMove) {
+        switch (cpuMove) { // change cpuMove to be printable on the page
             case "R":
                 cpuMove = "Pierre"
                 break;
@@ -106,28 +101,38 @@ class Solo extends React.Component {
             default:
                 break;
         }
+        // sets the dialog box text to show both moves
         this._movesUsed.textContent = (playerMove + " VS " + cpuMove);
 
+        // round increment
+        this.props.addRound(this.round++);
 
         if (currentPlayerScore == this.props.WINscore) {
             this._buttonsP1.hidden = true;
             this._winnerName.textContent = (this.props.P1name + " a vaincu BOT !");
-            this.addGame(this.props.P1name, currentPlayerScore, "BOT", currentCPUScore);
+            // hides the buttons and shows the victory text
 
+            this.addGame(this.props.P1name, currentPlayerScore, "BOT", currentCPUScore);
+            // adds the game to the game history list
 
         } else if (currentCPUScore == this.props.WINscore) {
             this._buttonsP1.hidden = true;
             this._winnerName.textContent = ("BOT a vaincu " + this.props.P1name + " !");
+            // hides the buttons and shows the victory text
+
             this.addGame("BOT", currentCPUScore, this.props.P1name, currentPlayerScore);
+            // adds the game to the game history list
 
         }
-        // round increment
-        this.props.addRound(this.round++);
+
     }
 
+    /**
+     * Loads once the page has fully loaded
+     */
     componentDidMount() {
-        if (this.props.P1name == undefined) {
-            this.props.history.push("/play")
+        if (this.props.P1name == undefined) {  // if the player is undefined
+            this.props.history.push("/play") // returns to the play page
         }
     }
 

@@ -32,66 +32,68 @@ class Duo extends React.Component {
                 this.P1move = move;
                 this._movesUsed.textContent = (this.props.P1name + " a joué.");
                 this._winnerName.textContent = ("");
-
+                // sets the current move of the player 1 and shows that they played
                 break;
             case 1:
                 this.P2move = move;
                 this._movesUsed.textContent = (this.props.P2name + " a joué.");
                 this._winnerName.textContent = ("");
+                // sets the current move of the player 2 and shows that they played
                 break;
         }
 
         let currentPlayer1Score = this.props.P1score;
         let currentPlayer2Score = this.props.P2score;
+        //grabs the score for both players
 
 
-        if (this.P1move === 'R') {
-            if (this.P2move === 'R') {
-                console.log("equal")
+        if (this.P1move === 'R') { // if P1 plays ROCK
+            if (this.P2move === 'R') { // if P2 plays ROCK
                 this._winnerName.textContent = ("Égalité...");
-            } else if (this.P2move === 'P') {
-                console.log("P2 Wins");
+
+            } else if (this.P2move === 'P') { // if P2 plays PAPER
                 this._winnerName.textContent = (this.props.P2name + " gagne !");
                 currentPlayer2Score++;
-            } else if (this.P2move === 'S') {
-                console.log("P1 Wins")
+
+            } else if (this.P2move === 'S') { // if P2 plays SCISSORS
                 this._winnerName.textContent = (this.props.P1name + " gagne !");
                 currentPlayer1Score++;
             }
-        } else if (this.P1move === 'P') {
-            if (this.P2move === 'R') {
-                console.log("P1 Wins")
+
+        } else if (this.P1move === 'P') { // if P1 plays PAPER
+            if (this.P2move === 'R') { // if P2 plays SCISSORS
                 this._winnerName.textContent = (this.props.P1name + " gagne !");
                 currentPlayer1Score++;
-            } else if (this.P2move === 'P') {
-                console.log("equal")
+
+            } else if (this.P2move === 'P') { // if P2 plays PAPER
                 this._winnerName.textContent = ("Égalité...");
 
-            } else if (this.P2move === 'S') {
-                console.log("P2 Wins")
+            } else if (this.P2move === 'S') { // if P2 plays SCISSORS
                 this._winnerName.textContent = (this.props.P2name + " gagne !");
                 currentPlayer2Score++;
             }
-        } else if (this.P1move === 'S') {
-            if (this.P2move === 'R') {
-                console.log("P2 Wins")
+
+        } else if (this.P1move === 'S') { // if P1 plays SCISSORS
+            if (this.P2move === 'R') { // if P2 plays ROCK
                 this._winnerName.textContent = (this.props.P2name + " gagne !");
                 currentPlayer2Score++;
-            } else if (this.P2move === 'P') {
-                console.log("P1 Wins")
+
+            } else if (this.P2move === 'P') { // if P1 plays PAPER
                 this._winnerName.textContent = (this.props.P1name + " gagne !");
                 currentPlayer1Score++;
-            } else if (this.P2move === 'S') {
-                console.log("equal")
+
+            } else if (this.P2move === 'S') { // if P2 plays SCISSORS
                 this._winnerName.textContent = ("Égalité...");
             }
         }
 
         this.props.setP2Score(currentPlayer2Score);
         this.props.setP1Score(currentPlayer1Score);
+        // sets the score after the move has been calculated
 
-        if (['R', 'P', 'S'].indexOf(this.P1move) >= 0 && ['R', 'P', 'S'].indexOf(this.P2move) >= 0) { //check equal to only R P or S for both
-            switch (this.P1move) {
+        if (['R', 'P', 'S'].indexOf(this.P1move) >= 0 && ['R', 'P', 'S'].indexOf(this.P2move) >= 0) {
+            // if both moves are ready
+            switch (this.P1move) { // change P1move to be printable on the page
                 case "R":
                     this.P1move = "Pierre"
                     break;
@@ -102,7 +104,7 @@ class Duo extends React.Component {
                     this.P1move = "Ciseaux"
                     break;
             }
-            switch (this.P2move) {
+            switch (this.P2move) { // change P2move to be printable on the page
                 case "R":
                     this.P2move = "Pierre"
                     break;
@@ -113,33 +115,41 @@ class Duo extends React.Component {
                     this.P2move = "Ciseaux"
                     break;
             }
+            // sets the dialog box text to show both moves
             this._movesUsed.textContent = (this.P1move + " VS " + this.P2move);
 
             // round increment
             this.props.addRound(this.round++);
         }
 
-        if (currentPlayer1Score == this.props.WINscore) {
+        if (currentPlayer1Score == this.props.WINscore) { // if player 1 has reached the max score
             this._buttonsP1.hidden = true;
             this._buttonsP2.hidden = true;
             this._winnerName.textContent = (this.props.P1name + " a vaincu " + this.props.P2name + " !");
+            // hides the buttons and shows the victory text
+
             this.addGame(this.props.P1name, currentPlayer1Score, this.props.P2name, currentPlayer2Score);
-
-
-        } else if (currentPlayer2Score == this.props.WINscore) {
+            // adds the game to the game history list
+        } else if (currentPlayer2Score == this.props.WINscore) { // if player 2 has reached the max score
             this._buttonsP1.hidden = true;
             this._buttonsP2.hidden = true;
             this._winnerName.textContent = (this.props.P2name + " a vaincu " + this.props.P1name + " !");
-            this.addGame(this.props.P2name, currentPlayer2Score, this.props.P1name, currentPlayer1Score);
+            // hides the buttons and shows the victory text
 
+            this.addGame(this.props.P2name, currentPlayer2Score, this.props.P1name, currentPlayer1Score);
+            // adds the game to the game history list
 
         }
 
     }
 
+    /**
+     * Loads once the page has fully loaded
+     */
     componentDidMount() {
         if (this.props.P1name == undefined || this.props.P2name == undefined) {
-            this.props.history.push("/play")
+            // if one of the two players is undefined
+            this.props.history.push("/play") // returns to the play page
         }
     }
 
@@ -204,7 +214,6 @@ const mapStateToProps = state => {
         P1score: state.P1score,
         P2score: state.P2score,
         WINscore: state.WINscore
-
     };
 }
 

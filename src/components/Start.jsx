@@ -11,21 +11,6 @@ class Start extends React.Component {
         }
     }
 
-
-    enablePlayerTwoName() {
-        console.log('aaaa');
-        var input = document.getElementById('p2name');
-        //var input = this.refs.p2name.value;
-
-        if (this.checked) {
-            input.disabled = false;
-            console.log('prout check')
-        } else {
-            input.disabled = true;
-            console.log('prout uncheck')
-        }
-    }
-
     handleSubmit(event) {
         event.preventDefault();
 
@@ -38,14 +23,12 @@ class Start extends React.Component {
         let selectedMaxScore = parseInt(event.target[4].value, 10);
 
 
-        if (player1Name == "") {
+        if (player1Name == "") { // if the text field is empty
             player1Name = "JOUEUR 1"
         }
-        if (player2Name == "") {
+        if (player2Name == "") { // if the text field is empty
             player2Name = "JOUEUR 2"
         }
-
-        console.log("SUMBIT PLAY", player1Name, player2Name)
 
         this.props.setP1Name(player1Name);
         this.props.setP2Name(player2Name);
@@ -55,11 +38,11 @@ class Start extends React.Component {
         this.props.setCPUScore(0);
         this.props.setWinScore(selectedMaxScore);
 
-        if (isModeOnePlayer && !isModeTwoPlayers) {
+        if (isModeOnePlayer && !isModeTwoPlayers) { // checks if the checked mode is 1 player
             return (
                 this.props.history.push("/solo")
             );
-        } else if (!isModeOnePlayer && isModeTwoPlayers) {
+        } else if (!isModeOnePlayer && isModeTwoPlayers) { // checks if the checked mode is 2 players
             return (
                 this.props.history.push("/duo")
             );

@@ -18,9 +18,11 @@ class Games extends React.Component {
             <div>
                 <h2>Parties</h2>
                 <ol>
-                    {games.map((game, index) => {
+                    {games.map((game, index) => { // for each of the scores in the list
                         return (
-                            <li key={index}>{game.nameW} ({game.scoreW} points) a battu {game.nameL} ({game.scoreL} points)</li>
+                            // add a li with the scores
+                            <li key={index}>{game.nameW} ({game.scoreW} points) a
+                                battu {game.nameL} ({game.scoreL} points)</li>
                         );
                     })}
                 </ol>
