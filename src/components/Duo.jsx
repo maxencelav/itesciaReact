@@ -30,18 +30,20 @@ class Duo extends React.Component {
         switch (player) {
             case 0:
                 this.P1move = move;
+                this._movesUsed.textContent = (this.props.P1name + " a joué.");
+                this._winnerName.textContent = ("");
+
                 break;
             case 1:
                 this.P2move = move;
+                this._movesUsed.textContent = (this.props.P2name + " a joué.");
+                this._winnerName.textContent = ("");
                 break;
         }
 
         let currentPlayer1Score = this.props.P1score;
         let currentPlayer2Score = this.props.P2score;
 
-        console.log(currentPlayer1Score, currentPlayer2Score)
-
-        console.log(this.P1move + " vs " + this.P2move);
 
         if (this.P1move === 'R') {
             if (this.P2move === 'R') {
@@ -157,7 +159,7 @@ class Duo extends React.Component {
                 <h3>ROUND {this.props.round} - JUSQU'À {this.props.WINscore}</h3>
                 <div id="playerGrid">
                     <div id="P1case">
-                        <img src={playerRed} alt="P1"/>
+                        <img src={playerRed} alt="P1" ref={c => (this._playerRed = c)}/>
                         <h4>{this.props.P1name}</h4>
                         <p className="playerScore">{this.props.P1score}</p>
                         <div ref={c => (this._buttonsP1 = c)}>
@@ -170,7 +172,7 @@ class Duo extends React.Component {
                         </div>
                     </div>
                     <div id="P2case">
-                        <img src={playerBlue} alt="P2"/>
+                        <img src={playerBlue} alt="P2" ref={c => (this._playerBlue = c)}/>
                         <h4>{this.props.P2name}</h4>
                         <p className="playerScore">{this.props.P2score}</p>
 

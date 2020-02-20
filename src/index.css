@@ -149,6 +149,12 @@ h4 {
     margin: 0.3em;
 }
 
+input {
+    font-family: 'Open Sans', sans-serif;
+    font-size: large;
+    margin: 0.1em;
+}
+
 /* ronds à cliquer */
 input[type=radio] {
     -webkit-appearance: none;
@@ -190,6 +196,7 @@ input[type=radio]:checked {
 }
 
 #buttonStartGame {
+    font-family: 'Open Sans', sans-serif;
     width: 50%;
     height: 3em;
     margin: 1em;
