@@ -35,6 +35,9 @@ class Start extends React.Component {
         let player1Name = event.target[2].value;
         let player2Name = event.target[3].value;
 
+        let selectedMaxScore = parseInt(event.target[4].value, 10);
+
+
         if (player1Name == "") {
             player1Name = "JOUEUR 1"
         }
@@ -50,7 +53,7 @@ class Start extends React.Component {
         this.props.setP1Score(0);
         this.props.setP2Score(0);
         this.props.setCPUScore(0);
-        this.props.setWinScore(3);
+        this.props.setWinScore(selectedMaxScore);
 
         if (isModeOnePlayer && !isModeTwoPlayers) {
             return (
@@ -81,14 +84,21 @@ class Start extends React.Component {
                     <h3>Noms des joueurs</h3>
                     <label>
                         Nom du joueur 1 :
-                        <input type="text" name="p1name" id="p1name"/>
+                        <input type="text" name="p1name" id="p1name" defaultValue={"Alpha"}/>
                     </label>
                     <br/>
                     <label>
                         Nom du joueur 2 :
-                        <input type="text" name="p2name" id="p2name" ref="p2name"/>
+                        <input type="text" name="p2name" id="p2name" ref="p2name" defaultValue={"Beta"}/>
                     </label>
                     <br/>
+
+                    <h3>Règles</h3>
+                    <label>Score maximal :</label>
+                    <input type="number" name="maxScoreSelect" id="maxScoreSelect" ref="maxScoreSelect" min="3"
+                           max="100" defaultValue={3}/>
+                    <br/>
+
                     <input type="submit" value="Jouer" id="buttonStartGame"/>
 
                 </form>

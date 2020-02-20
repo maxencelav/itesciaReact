@@ -77,8 +77,8 @@ class Solo extends React.Component {
             }
         }
 
-        this.props.setCPUScore(currentCPUScore++);
-        this.props.setP1Score(currentPlayerScore++);
+        this.props.setCPUScore(currentCPUScore);
+        this.props.setP1Score(currentPlayerScore);
 
         this._winPopUp.hidden = false;
         switch (playerMove) {
@@ -123,7 +123,7 @@ class Solo extends React.Component {
         return (
             <div>
                 <h2>Solo</h2>
-                <h3>ROUND {this.props.round} - BEST OF {this.props.WINscore}</h3>
+                <h3>ROUND {this.props.round} - JUSQU'À {this.props.WINscore}</h3>
                 <div id="playerGrid">
                     <div id="P1case">
                         <img src={playerRed} alt="P1"/>

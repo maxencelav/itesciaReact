@@ -67,7 +67,7 @@ class Duo extends React.Component {
 
             } else if (this.P2move === 'S') {
                 console.log("P2 Wins")
-                this._winnerName.textContent = (this.props.P2name + "gagne !");
+                this._winnerName.textContent = (this.props.P2name + " gagne !");
                 currentPlayer2Score++;
             }
         } else if (this.P1move === 'S') {
@@ -85,8 +85,8 @@ class Duo extends React.Component {
             }
         }
 
-        this.props.setP2Score(currentPlayer2Score++);
-        this.props.setP1Score(currentPlayer1Score++);
+        this.props.setP2Score(currentPlayer2Score);
+        this.props.setP1Score(currentPlayer1Score);
 
         if (['R', 'P', 'S'].indexOf(this.P1move) >= 0 && ['R', 'P', 'S'].indexOf(this.P2move) >= 0) { //check equal to only R P or S for both
             switch (this.P1move) {
@@ -135,7 +135,7 @@ class Duo extends React.Component {
         return (
             <div>
                 <h2>Duo</h2>
-                <h3>ROUND {this.props.round} - BEST OF {this.props.WINscore}</h3>
+                <h3>ROUND {this.props.round} - JUSQU'À {this.props.WINscore}</h3>
                 <div id="playerGrid">
                     <div id="P1case">
                         <img src={playerRed} alt="P1"/>
