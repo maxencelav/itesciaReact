@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {setP1Name, setP2Name} from "../redux/actions";
+import {setP1Name, setP2Name, addRound, setP1Score, setCPUScore, setP2Score} from "../redux/actions";
 
 class Start extends React.Component {
     constructor(props) {
@@ -10,7 +10,6 @@ class Start extends React.Component {
             names: []
         }
     }
-
 
 
     enablePlayerTwoName() {
@@ -36,10 +35,21 @@ class Start extends React.Component {
         let player1Name = event.target[2].value;
         let player2Name = event.target[3].value;
 
-        console.log("SUMBIT PLAY", player1Name,player2Name)
+        if (player1Name == "") {
+            player1Name = "JOUEUR 1"
+        }
+        if (player2Name == "") {
+            player2Name = "JOUEUR 2"
+        }
+
+        console.log("SUMBIT PLAY", player1Name, player2Name)
 
         this.props.setP1Name(player1Name);
         this.props.setP2Name(player2Name);
+        this.props.addRound(1);
+        this.props.setP1Score(0);
+        this.props.setP2Score(0);
+        this.props.setCPUScore(0);
 
         if (isModeOnePlayer && !isModeTwoPlayers) {
             return (
@@ -101,6 +111,18 @@ const mapDispatchToProps = dispatch => {
         },
         setP2Name: name => {
             dispatch(setP2Name(name))
+        },
+        addRound: round => {
+            dispatch(addRound(round))
+        },
+        setP1Score: score => {
+            dispatch(setP1Score(score))
+        },
+        setP2Score: score => {
+            dispatch(setP2Score(score))
+        },
+        setCPUScore: score => {
+            dispatch(setCPUScore(score))
         }
     }
 }

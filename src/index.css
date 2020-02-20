@@ -56,22 +56,77 @@ h2 {
 
 }
 
+#playerGrid img {
+    width: 30%;
+    height: auto;
+    padding: 1em;
+}
+
 #P1case {
-    background-color: rgba(205, 92, 92, 0.51);
+    background-color: rgba(205, 92, 92, 0.3);
     width: 50%;
 }
 
 #P2case {
-    background-color: rgba(135, 206, 250, 0.51);
+    background-color: rgba(135, 206, 250, 0.3);
     width: 50%;
 
 }
 
 #BOTcase {
-    background-color: darkgrey;
+    background-color: rgba(0, 0, 0, 0.3);
     width: 50%;
+}
+
+h4 {
+    font-size: xx-large;
+    margin: 0.5em;
+}
+
+
+#rockButton {
+    background: url("./assets/img/roYellow.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#paperButton {
+    background: url("./assets/img/paYellow.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#scissorsButton {
+    background: url("./assets/img/scYellow.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.moveButton {
+    width: 56px;
+    height: 56px;
+    border: none;
+    outline: none;
+    margin: 1em;
+    transition: .1s;
 
 }
+
+.moveButton:hover {
+    transform: scale(1.1);
+}
+
+.moveButton:active {
+    transform: scale(0.9);
+}
+
+
 
 /* ronds à cliquer */
 input[type=radio] {
