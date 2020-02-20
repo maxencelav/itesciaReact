@@ -32,11 +32,11 @@ export default function reducer(state = initialState, action) {
             return {...state, P2score: action.P2score};
 
         case SET_SCORE_CPU:
-            console.log("SET_SCORE_CPU: ", action.CPUscore);
+            //console.log("SET_SCORE_CPU: ", action.CPUscore);
             return {...state, CPUscore: action.CPUscore};
 
         case SET_WIN_SCORE:
-            console.log("SET_WIN_SCORE: ", action.WINscore);
+            //console.log("SET_WIN_SCORE: ", action.WINscore);
             return {...state, WINscore: action.WINscore};
 
         case ADD_ROUND:

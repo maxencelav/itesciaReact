@@ -106,6 +106,15 @@ class Solo extends React.Component {
         this._movesUsed.textContent = (playerMove + " VS " + cpuMove);
 
 
+        if (currentPlayerScore == this.props.WINscore) {
+            this._buttonsP1.hidden = true;
+            this._winnerName.textContent = (this.props.P1name + " a vaincu BOT !");
+
+        } else if (currentCPUScore == this.props.WINscore) {
+            this._buttonsP1.hidden = true;
+            this._winnerName.textContent = ("BOT a vaincu " + this.props.P1name + " !");
+
+        }
         // round increment
         this.props.addRound(this.round++);
     }
@@ -114,19 +123,20 @@ class Solo extends React.Component {
         return (
             <div>
                 <h2>Solo</h2>
-                <h3>ROUND {this.props.round}</h3>
+                <h3>ROUND {this.props.round} - BEST OF {this.props.WINscore}</h3>
                 <div id="playerGrid">
                     <div id="P1case">
                         <img src={playerRed} alt="P1"/>
                         <h4>{this.props.P1name}</h4>
                         <p className="playerScore">{this.props.P1score}</p>
-
-                        <button type="button" id="rockButton" className="moveButton"
-                                onClick={() => this.move('R', 0)}></button>
-                        <button type="button" id="paperButton" className="moveButton"
-                                onClick={() => this.move('P', 0)}></button>
-                        <button type="button" id="scissorsButton" className="moveButton"
-                                onClick={() => this.move('S', 0)}></button>
+                        <div ref={c => (this._buttonsP1 = c)}>
+                            <button type="button" id="rockButton" className="moveButton"
+                                    onClick={() => this.move('R', 0)}></button>
+                            <button type="button" id="paperButton" className="moveButton"
+                                    onClick={() => this.move('P', 0)}></button>
+                            <button type="button" id="scissorsButton" className="moveButton"
+                                    onClick={() => this.move('S', 0)}></button>
+                        </div>
                     </div>
                     <div id="BOTcase">
                         <img src={playerGrey} alt="BOT"/>
