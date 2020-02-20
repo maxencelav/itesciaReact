@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {setNames} from "../redux/actions";
+import {setP1Name, setP2Name} from "../redux/actions";
 
 class Start extends React.Component {
     constructor(props) {
@@ -38,7 +38,8 @@ class Start extends React.Component {
 
         console.log("SUMBIT PLAY", player1Name,player2Name)
 
-        this.props.setNames(player1Name,player2Name);
+        this.props.setP1Name(player1Name);
+        this.props.setP2Name(player2Name);
 
         if (isModeOnePlayer && !isModeTwoPlayers) {
             return (
@@ -95,8 +96,11 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        setNames: names => {
-            dispatch(setNames(names))
+        setP1Name: name => {
+            dispatch(setP1Name(name))
+        },
+        setP2Name: name => {
+            dispatch(setP2Name(name))
         }
     }
 }

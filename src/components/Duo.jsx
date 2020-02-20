@@ -7,16 +7,18 @@ class Duo extends React.Component {
         super();
         this.P1score = 0;
         this.P2score = 0;
-        this.names = {}
+        this.P1name = "";
+        this.P2name = "";
     }
+
     render() {
         return(
             <div>
                 <h2>Duo</h2>
                 <h3>ROUND</h3>
                 <div id="playerGrid">
-                    <div id="P1case">{this.props.name[0]}</div>
-                    <div id="P2case">{this.props.name[1]}</div>
+                    <div id="P1case">{this.props.P1name}</div>
+                    <div id="P2case">{this.props.P2name}</div>
                 </div>
 
             </div>);
@@ -27,7 +29,8 @@ class Duo extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        names: state.names
+        P1name: state.P1name,
+        P2name: state.P2name
     };
 }
 

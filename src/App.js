@@ -22,6 +22,13 @@ const store = createStore(reducer);
 
 
 export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            names: []
+        }
+
+    }
     render() {
         return (
             <Provider store={store}>
@@ -41,7 +48,6 @@ export default class App extends React.Component {
                                 <li>
                                     <Link to="/about">A propos</Link>
                                 </li>
-
                             </ul>
                         </nav>
 
