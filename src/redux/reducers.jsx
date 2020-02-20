@@ -9,7 +9,7 @@ import {
     SET_WIN_SCORE
 } from "./actions";
 
-const initialState = {name: "", scores: []};
+const initialState = {name: "", games: []};
 
 
 export default function reducer(state = initialState, action) {
@@ -44,7 +44,7 @@ export default function reducer(state = initialState, action) {
             return {...state, round: action.round};
 
         case ADD_GAME:
-            return {...state, scores: [...state.scores, action.scores]};
+            return {...state, games: [...state.games, action.game]};
 
         default:
             return state;

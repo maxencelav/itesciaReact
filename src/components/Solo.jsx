@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import playerRed from "../assets/img/playerRed.png";
 import playerGrey from "../assets/img/playerGrey.png";
-import {addRound, setCPUScore, setP1Score} from "../redux/actions";
+import {addGame, addRound, setCPUScore, setP1Score} from "../redux/actions";
 
 class Solo extends React.Component {
     constructor() {
@@ -14,7 +14,6 @@ class Solo extends React.Component {
             round: 0
         }
         this.round = 2;
-
     }
 
     /**
@@ -91,6 +90,8 @@ class Solo extends React.Component {
             case "S":
                 playerMove = "Ciseaux"
                 break;
+            default:
+                break;
         }
         switch (cpuMove) {
             case "R":
@@ -102,6 +103,8 @@ class Solo extends React.Component {
             case "S":
                 cpuMove = "Ciseaux"
                 break;
+            default:
+                break;
         }
         this._movesUsed.textContent = (playerMove + " VS " + cpuMove);
 
@@ -109,14 +112,32 @@ class Solo extends React.Component {
         if (currentPlayerScore == this.props.WINscore) {
             this._buttonsP1.hidden = true;
             this._winnerName.textContent = (this.props.P1name + " a vaincu BOT !");
+            this.addGame(this.props.P1name, currentPlayerScore, "BOT", currentCPUScore);
+
 
         } else if (currentCPUScore == this.props.WINscore) {
             this._buttonsP1.hidden = true;
             this._winnerName.textContent = ("BOT a vaincu " + this.props.P1name + " !");
+            this.addGame("BOT", currentCPUScore, this.props.P1name, currentPlayerScore);
 
         }
         // round increment
         this.props.addRound(this.round++);
+    }
+
+    componentDidMount() {
+        if (this.props.P1name == undefined) {
+            this.props.history.push("/play")
+        }
+    }
+
+    addGame(nameWinner, scoreWinner, nameLoser, scoreLoser) {
+        this.props.addGame({
+            nameW: nameWinner,
+            scoreW: parseInt(scoreWinner),
+            nameL: nameLoser,
+            scoreL: parseInt(scoreLoser),
+        });
     }
 
     render() {
@@ -175,6 +196,9 @@ const mapDispatchToProps = dispatch => {
         },
         setCPUScore: score => {
             dispatch(setCPUScore(score))
+        },
+        addGame: game => {
+            dispatch(addGame(game))
         }
     };
 }

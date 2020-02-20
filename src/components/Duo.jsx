@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import playerRed from '../assets/img/playerRed.png';
 import playerBlue from '../assets/img/playerBlue.png';
-import {addRound, setCPUScore, setP1Score, setP2Score} from "../redux/actions";
+import {addGame, addRound, setCPUScore, setP1Score, setP2Score} from "../redux/actions";
 
 
 class Duo extends React.Component {
@@ -121,14 +121,33 @@ class Duo extends React.Component {
             this._buttonsP1.hidden = true;
             this._buttonsP2.hidden = true;
             this._winnerName.textContent = (this.props.P1name + " a vaincu " + this.props.P2name + " !");
+            this.addGame(this.props.P1name, currentPlayer1Score, this.props.P2name, currentPlayer2Score);
+
 
         } else if (currentPlayer2Score == this.props.WINscore) {
             this._buttonsP1.hidden = true;
             this._buttonsP2.hidden = true;
             this._winnerName.textContent = (this.props.P2name + " a vaincu " + this.props.P1name + " !");
+            this.addGame(this.props.P2name, currentPlayer2Score, this.props.P1name, currentPlayer1Score);
+
 
         }
 
+    }
+
+    componentDidMount() {
+        if (this.props.P1name == undefined || this.props.P2name == undefined) {
+            this.props.history.push("/play")
+        }
+    }
+
+    addGame(nameWinner, scoreWinner, nameLoser, scoreLoser) {
+        this.props.addGame({
+            nameW: nameWinner,
+            scoreW: parseInt(scoreWinner),
+            nameL: nameLoser,
+            scoreL: parseInt(scoreLoser),
+        });
     }
 
     render() {
@@ -197,6 +216,9 @@ const mapDispatchToProps = dispatch => {
         },
         setP2Score: score => {
             dispatch(setP2Score(score))
+        },
+        addGame: game => {
+            dispatch(addGame(game))
         }
     };
 }
