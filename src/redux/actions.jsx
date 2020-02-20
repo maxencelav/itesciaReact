@@ -4,6 +4,7 @@ export const ADD_ROUND = 'ADD_ROUND';
 export const SET_SCORE_P1 = 'SET_SCORE_P1';
 export const SET_SCORE_P2 = 'SET_SCORE_P2';
 export const SET_SCORE_CPU = 'SET_SCORE_CPU';
+export const SET_WIN_SCORE = 'SET_WIN_SCORE';
 export const ADD_GAME = 'ADD_GAME';
 
 
@@ -46,6 +47,13 @@ export function addRound(roundNb) {
     return {
         type: ADD_ROUND,
         round: roundNb
+    }
+}
+
+export function setWinScore(score) {
+    return {
+        type: SET_WIN_SCORE,
+        WINscore: score
     }
 }
 

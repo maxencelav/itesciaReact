@@ -9,8 +9,8 @@ class Solo extends React.Component {
     constructor() {
         super();
         this.state = {
-            P1name: "a",
-            P2name: "a",
+            P1name: "",
+            P2name: "",
             round: 0
         }
         this.round = 2;
@@ -37,37 +37,74 @@ class Solo extends React.Component {
         if (playerMove === 'R') {
             if (cpuMove === 'R') {
                 console.log("equal")
+                this._winnerName.textContent = ("Égalité...");
             } else if (cpuMove === 'P') {
                 console.log("CPU Wins");
+                this._winnerName.textContent = ("BOT gagne !");
                 currentCPUScore++;
             } else if (cpuMove === 'S') {
                 console.log("Player Wins")
+                this._winnerName.textContent = (this.props.P1name + " gagne !");
                 currentPlayerScore++;
             }
         } else if (playerMove === 'P') {
             if (cpuMove === 'R') {
                 console.log("Player Wins")
+                this._winnerName.textContent = (this.props.P1name + " gagne !");
                 currentPlayerScore++;
             } else if (cpuMove === 'P') {
                 console.log("equal")
+                this._winnerName.textContent = ("Égalité...");
+
             } else if (cpuMove === 'S') {
                 console.log("CPU Wins")
+                this._winnerName.textContent = ("BOT gagne !");
                 currentCPUScore++;
             }
         } else if (playerMove === 'S') {
             if (cpuMove === 'R') {
                 console.log("CPU Wins")
+                this._winnerName.textContent = ("BOT gagne !");
                 currentCPUScore++;
             } else if (cpuMove === 'P') {
                 console.log("Player Wins")
+                this._winnerName.textContent = (this.props.P1name + " gagne !");
                 currentPlayerScore++;
             } else if (cpuMove === 'S') {
                 console.log("equal")
+                this._winnerName.textContent = ("Égalité...");
+
             }
         }
 
         this.props.setCPUScore(currentCPUScore++);
         this.props.setP1Score(currentPlayerScore++);
+
+        this._winPopUp.hidden = false;
+        switch (playerMove) {
+            case "R":
+                playerMove = "Pierre"
+                break;
+            case "P":
+                playerMove = "Feuille"
+                break;
+            case "S":
+                playerMove = "Ciseaux"
+                break;
+        }
+        switch (cpuMove) {
+            case "R":
+                cpuMove = "Pierre"
+                break;
+            case "P":
+                cpuMove = "Feuille"
+                break;
+            case "S":
+                cpuMove = "Ciseaux"
+                break;
+        }
+        this._movesUsed.textContent = (playerMove + " VS " + cpuMove);
+
 
         // round increment
         this.props.addRound(this.round++);
@@ -95,8 +132,11 @@ class Solo extends React.Component {
                         <img src={playerGrey} alt="BOT"/>
                         <h4>BOT</h4>
                         <p className="playerScore">{this.props.CPUscore}</p>
-
                     </div>
+                </div>
+                <div id="winPopUp" className="redWin" ref={c => (this._winPopUp = c)}>
+                    <h4 ref={c => (this._movesUsed = c)}></h4>
+                    <span id="winnerName" ref={c => (this._winnerName = c)}></span>
                 </div>
 
 
@@ -109,7 +149,8 @@ const mapStateToProps = state => {
         P1name: state.P1name,
         round: state.round,
         P1score: state.P1score,
-        CPUscore: state.CPUscore
+        CPUscore: state.CPUscore,
+        WINscore: state.WINscore
 
     };
 }

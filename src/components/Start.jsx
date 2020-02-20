@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {setP1Name, setP2Name, addRound, setP1Score, setCPUScore, setP2Score} from "../redux/actions";
+import {setP1Name, setP2Name, addRound, setP1Score, setCPUScore, setP2Score, setWinScore} from "../redux/actions";
 
 class Start extends React.Component {
     constructor(props) {
@@ -50,6 +50,7 @@ class Start extends React.Component {
         this.props.setP1Score(0);
         this.props.setP2Score(0);
         this.props.setCPUScore(0);
+        this.props.setWinScore(3);
 
         if (isModeOnePlayer && !isModeTwoPlayers) {
             return (
@@ -123,6 +124,9 @@ const mapDispatchToProps = dispatch => {
         },
         setCPUScore: score => {
             dispatch(setCPUScore(score))
+        },
+        setWinScore: WINscore => {
+            dispatch(setWinScore(WINscore))
         }
     }
 }
